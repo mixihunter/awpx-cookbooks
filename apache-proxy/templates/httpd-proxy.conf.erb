@@ -1,0 +1,21 @@
+#Listen
+Listen 8080
+
+#config
+<IfModule mod_proxy.c>
+  <VirtualHost *:8080>
+    ProxyRequests On
+    ProxyVia On
+    ProxyTimeout  600
+    CustomLog /var/log/httpd/proxy_log combined
+    NoProxy 192.168.0.0/16
+    NoProxy 172.31.0.0/16
+    <Proxy *>
+        Order deny,allow
+        Deny from all
+        Allow from 192.168.0.0/16
+        Allow from 172.31.0.0/16
+        Allow from 127.0.0.1
+    </Proxy>
+  </VirtualHost>
+</IfModule>

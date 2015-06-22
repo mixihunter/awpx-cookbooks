@@ -1,0 +1,9 @@
+ExtendedStatus On
+
+<Location /server-status>
+    SetHandler server-status
+    Order deny,allow
+    Deny from all
+    Allow from 192.168.
+    Allow from 172.31.
+</Location>
