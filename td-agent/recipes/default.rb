@@ -15,5 +15,12 @@ cookbook_file '/etc/yum.repos.d/td.repo' do
 end
 
 package 'td-agent' do
-  action :install
+   action :install
+end
+
+directory "/var/log/td-agent" do
+   owner 'td-agent'
+   group 'td-agent'
+   mode '0755'
+   action :create
 end
