@@ -1,0 +1,2 @@
+ZONE="Japan"
+UTC=true
