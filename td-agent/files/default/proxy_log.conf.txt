@@ -1,0 +1,12 @@
+<source>
+   type tail
+   format apache
+   path /var/log/httpd/proxy_log
+   tag s3.access
+</source>
+<match s3.access>
+   type s3
+   s3_bucket awpx-s3
+   flush_interval 300s
+   buffer_path /var/log/td-agent/s3.access
+</match>
