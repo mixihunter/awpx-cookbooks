@@ -8,16 +8,19 @@
 #
 
 # シンボリックリンクの作成
+# proxy全般
 # sudo ln -s /etc/httpd/mods-available/proxy.load /etc/httpd/mods-enabled/proxy.load
 link "/etc/httpd/mods-enabled/proxy.load" do
    to "/etc/httpd/mods-available/proxy.load"
 end
 
+#http用
 #sudo ln -s /etc/httpd/mods-available/proxy_http.load /etc/httpd/mods-enabled/proxy_http.load
 link "/etc/httpd/mods-enabled/proxy_http.load" do
    to "/etc/httpd/mods-available/proxy_http.load"
 end
 
+#https用
 #sudo ln -s /etc/httpd/mods-available/proxy_connect.load /etc/httpd/mods-enabled/proxy_connect.load
 link "/etc/httpd/mods-enabled/proxy_connect.load" do
    to "/etc/httpd/mods-available/proxy_connect.load"
