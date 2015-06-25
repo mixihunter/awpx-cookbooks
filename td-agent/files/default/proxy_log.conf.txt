@@ -8,5 +8,6 @@
    type s3
    s3_bucket awpx-s3
    flush_interval 300s
+   path proxy_log/
    buffer_path /var/log/td-agent/s3.access
 </match>
