@@ -8,8 +8,8 @@ dbpass = node[:deploy][:wordpress][:database][:password]
 dbhost = node[:deploy][:wordpress][:database][:host]
 wp_admin_email = node[:deploy][:wordpress][:wp_admin_email]
 
-execute "wp configure" do
-   command "wp core config --dbname=#{dbname} --dbuser=#{dbuser} --dbpass=#{dbpass} --dbhost=#{dbhost}"
+execute "wp-cli.phar configure" do
+   command "wp-cli.phar core config --dbname=#{dbname} --dbuser=#{dbuser} --dbpass=#{dbpass} --dbhost=#{dbhost}"
    cwd "#{wpdir}"
    user "deploy"
    not_if { File.exists?("#{wpdir}/wp-config.php") }
@@ -25,17 +25,17 @@ response = http.request(request)
 public_hostname = response.body
 
 execute "db create" do
-   command "wp db create"
+   command "wp-cli.phar db create"
    cwd "#{wpdir}"
    user "deploy"
    action :run
    ignore_failure true
 end
 
-execute "wp deploy" do
-   command "wp core install --url=#{public_hostname} --title=Test --admin_name=admin --admin_password=admin --admin_email=#{wp_admin_email}"
+execute "wp-cli.phar deploy" do
+   command "wp-cli.phar core install --url=#{public_hostname} --title=Test --admin_name=admin --admin_password=admin --admin_email=#{wp_admin_email}"
    cwd "#{wpdir}"
    user "deploy"
    action :run
-   not_if "sudo -u deploy wp core is-installed --path=#{wpdir}"
+   not_if "sudo -u deploy wp-cli.phar core is-installed --path=#{wpdir}"
 end
