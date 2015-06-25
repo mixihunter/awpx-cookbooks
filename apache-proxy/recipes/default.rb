@@ -18,6 +18,11 @@ link "/etc/httpd/mods-enabled/proxy_http.load" do
    to "/etc/httpd/mods-available/proxy_http.load"
 end
 
+#sudo ln -s /etc/httpd/mods-available/proxy_connect.load /etc/httpd/mods-enabled/proxy_connect.load
+link "/etc/httpd/mods-enabled/proxy_connect.load" do
+   to "/etc/httpd/mods-available/proxy_connect.load"
+end
+
 #sudo ln -s /etc/httpd/mods-available/proxy_ftp.load /etc/httpd/mods-enabled/proxy_ftp.load
 link "/etc/httpd/mods-enabled/proxy_ftp.load" do
    to "/etc/httpd/mods-available/proxy_ftp.load"
